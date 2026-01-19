@@ -42,16 +42,26 @@ export default async function restoreTerminals(configuration: Configuration) {
 
     let term!: vscode.Terminal;
     let name = terminalWindow.splitTerminals[0]?.name;
+
     let location =
       terminalWindow.location == "view" || terminalWindow.location == "panel"
         ? vscode.TerminalLocation.Panel
         : terminalWindow.location == "editor"
         ? vscode.TerminalLocation.Editor
         : 0;
+    const color = new vscode.ThemeColor(
+      terminalWindow.splitTerminals[0]?.color ?? "terminal.foreground"
+    );
 
+    vscode.window.showInformationMessage(
+      "Creating terminal " + name + " with color " + color
+    );
     term = vscode.window.createTerminal({
       name: name,
       location: location,
+      color: color,
+      isTransient: true,
+      iconPath: new vscode.ThemeIcon("test-view-icon"),
       // cwd: vscode.window.activeTextEditor?.document.uri.fsPath, //i think this happens by default
     });
 

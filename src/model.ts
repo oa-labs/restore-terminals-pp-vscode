@@ -4,11 +4,12 @@ export interface TerminalConfig {
   commands?: string[];
   name?: string;
   shouldRunCommands?: boolean; //whether to actually run the commands, or just paste them in
+  color?: string;
 }
 
 export interface TerminalWindow {
   splitTerminals?: TerminalConfig[];
-  location?: string; // view, editor, or default
+  location?: string;
 }
 
 export interface Configuration {
