@@ -55,8 +55,14 @@ export default async function restoreTerminals(configuration: Configuration) {
     const icon = new vscode.ThemeIcon(
       terminalWindow.splitTerminals[0]?.icon ?? "test-view-icon"
     );
+
     const folderInWorkspace = terminalWindow.splitTerminals[0]?.folder ?? "";
-    const folder = "${workspaceFolder}/${folderInWorkspace}";
+    const folder = folderInWorkspace
+      ? vscode.Uri.joinPath(
+          vscode.workspace.workspaceFolders![0].uri,
+          folderInWorkspace
+        )
+      : undefined;
 
     term = vscode.window.createTerminal({
       name: name,
