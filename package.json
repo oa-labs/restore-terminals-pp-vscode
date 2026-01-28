@@ -1,13 +1,13 @@
 {
   "name": "restore-terminals-pp",
   "displayName": "Restore Terminals++",
-  "description": "Spawn integrated terminals and run commands on startup - fork of EthanSK Restore Terminals with support for editor area terminals",
-  "version": "1.1.14",
+  "description": "Spawn integrated terminals and run commands on startup - fork of EthanSK Restore Terminals with support for editor area terminals, icons, colors, and current working directory",
+  "version": "1.1.15",
   "publisher": "OpenArc",
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/EthanSK/restore-terminals-vscode"
+    "url": "https://github.com/oa-labs/restore-terminals-pp-vscode"
   },
   "engines": {
     "vscode": "^1.46.0"

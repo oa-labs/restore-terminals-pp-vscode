@@ -10,18 +10,26 @@ Simply configure your VSCode settings JSON file to look something like this:
  "restoreTerminals.runOnStartup": true,
  "restoreTerminals.terminals": [
     {
+      "location": "editor",
       "splitTerminals": [
         {
           "name": "server",
-          "commands": ["npm i", "npm run dev"]
+          "commands": ["npm i", "npm run dev"],
+          "icon": "test-view-icon",
+          "color": "terminal.ansiYellow",
+          "folder": "server"
         },
         {
           "name": "client",
-          "commands": ["npm run dev:client"]
+          "commands": ["npm run dev:client"],
+          "icon": "comment-discussion",
+          "color": "terminal.ansiGreen"
         },
         {
           "name": "test",
-          "commands": ["jest --watch"]
+          "commands": ["jest --watch"],
+          "icon": "activate-breakpoints",
+          "color": "terminal.ansiBlue"
         }
       ]
     },
@@ -42,6 +50,22 @@ Simply configure your VSCode settings JSON file to look something like this:
 ```
 
 The outer array represents a integrated VSCode terminal window, and the `splitTerminals` array contains the information about how each terminal window should be split up.
+
+## Configuration Reference
+
+### Terminal Window
+Top-level objects in `restoreTerminals.terminals`.
+- `splitTerminals`: (Required) Array of terminal split configurations.
+- `location`: (Optional) Where to open the terminal. Values: `"panel"` (default), `"editor"`, or `"view"`.
+
+### Split Terminal
+Objects inside `splitTerminals`.
+- `name`: (Optional) Terminal name.
+- `commands`: (Optional) Array of string commands to run.
+- `shouldRunCommands`: (Optional) Boolean. If `false`, commands are pasted but not executed.
+- `icon`: (Optional) ID of a VS Code icon (e.g. `"zap"`).
+- `color`: (Optional) Terminal color ID (e.g. `"terminal.ansiRed"`).
+- `folder`: (Optional) Working directory relative to workspace root. Note: This applies to the whole terminal window and should be set on the first split terminal.
 
 You can also use a custom config file under. The file should be at `.vscode/restore-terminals.json` in any workspace you want. A sample config file is [here](https://github.com/EthanSK/restore-terminals-vscode/blob/master/sample-test-project/.vscode/restore-terminals.json). If this config file is present, Restore Terminals will try and load settings from it first, then use `settings.json` as a fallback.
 
