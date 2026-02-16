@@ -6,7 +6,6 @@ export interface TerminalConfig {
   shouldRunCommands?: boolean; //whether to actually run the commands, or just paste them in
   color?: string;
   icon?: string;
-  folder?: string;
 }
 
 export interface TerminalWindow {

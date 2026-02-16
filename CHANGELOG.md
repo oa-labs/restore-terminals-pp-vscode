@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.1.16
+- Removed "folder" configuration option, you can just add it as the first string in the command array.
+
 # 1.1.15
 - Added support for workspace folder in terminal commands
 - Added support for editor area terminals

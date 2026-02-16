@@ -1,4 +1,4 @@
-# Restore Terminals
+# Terminal Turbo Charger
 
 Automatically spawn integrated terminal windows and split terminals, and run any shell commands when VSCode starts up!
 
@@ -14,14 +14,13 @@ Simply configure your VSCode settings JSON file to look something like this:
       "splitTerminals": [
         {
           "name": "server",
-          "commands": ["npm i", "npm run dev"],
+          "commands": ["cd server", "npm i", "npm run dev"],
           "icon": "test-view-icon",
           "color": "terminal.ansiYellow",
-          "folder": "server"
         },
         {
           "name": "client",
-          "commands": ["npm run dev:client"],
+          "commands": ["cd client","npm run dev"],
           "icon": "comment-discussion",
           "color": "terminal.ansiGreen"
         },
@@ -65,7 +64,6 @@ Objects inside `splitTerminals`.
 - `shouldRunCommands`: (Optional) Boolean. If `false`, commands are pasted but not executed.
 - `icon`: (Optional) ID of a VS Code icon (e.g. `"zap"`).
 - `color`: (Optional) Terminal color ID (e.g. `"terminal.ansiRed"`).
-- `folder`: (Optional) Working directory relative to workspace root. Note: This applies to the whole terminal window and should be set on the first split terminal.
 
 You can also use a custom config file under. The file should be at `.vscode/restore-terminals.json` in any workspace you want. A sample config file is [here](https://github.com/EthanSK/restore-terminals-vscode/blob/master/sample-test-project/.vscode/restore-terminals.json). If this config file is present, Restore Terminals will try and load settings from it first, then use `settings.json` as a fallback.
 
@@ -84,9 +82,5 @@ If you do not want it to restore terminals on VSCode startup, but instead only r
 If you don't want the commands to actually run, just be pasted in the terminal, then set `shouldRunCommands` to `false` in each `splitTerminals` object.
 
 If you don't like using split terminals, then just provide one object in each split terminal array, which should be the intuitive thing to do.
-
-### Contributions
-
-Unless you can 100% prove your contribution fully works with a video, and the code is clean and makes sense, I am no longer accepting contributions. Too many contributions have been submitted that don't work, and the VSCode official API doesn't work in many cases, and this extension already uses a couple hacks to get around it.
 
 **Enjoy!**
