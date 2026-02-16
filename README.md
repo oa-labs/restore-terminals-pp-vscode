@@ -7,8 +7,8 @@ Automatically spawn integrated terminal windows and split terminals, and run any
 Simply configure your VSCode settings JSON file to look something like this:
 
 ```
- "restoreTerminals.runOnStartup": true,
- "restoreTerminals.terminals": [
+ "turboCharger.runOnStartup": true,
+ "turboCharger.terminals": [
     {
       "location": "editor",
       "splitTerminals": [
@@ -48,12 +48,12 @@ Simply configure your VSCode settings JSON file to look something like this:
   ]
 ```
 
-The outer array represents a integrated VSCode terminal window, and the `splitTerminals` array contains the information about how each terminal window should be split up.
+The outer array represents a integrated VSCode terminal window, and the `splitTerminals` array contains the information about how each terminal window should be split up. The extension will first read from `turboCharger` settings and then fall back to `restoreTerminals` for a few releases.
 
 ## Configuration Reference
 
 ### Terminal Window
-Top-level objects in `restoreTerminals.terminals`.
+Top-level objects in `turboCharger.terminals` (preferred) or `restoreTerminals.terminals` (legacy).
 - `splitTerminals`: (Required) Array of terminal split configurations.
 - `location`: (Optional) Where to open the terminal. Values: `"panel"` (default), `"editor"`, or `"view"`.
 
@@ -65,7 +65,13 @@ Objects inside `splitTerminals`.
 - `icon`: (Optional) ID of a VS Code icon (e.g. `"zap"`).
 - `color`: (Optional) Terminal color ID (e.g. `"terminal.ansiRed"`).
 
-You can also use a custom config file under. The file should be at `.vscode/restore-terminals.json` in any workspace you want. A sample config file is [here](https://github.com/EthanSK/restore-terminals-vscode/blob/master/sample-test-project/.vscode/restore-terminals.json). If this config file is present, Restore Terminals will try and load settings from it first, then use `settings.json` as a fallback.
+You can also use a custom config file. The preferred file is `.vscode/turbo-charger.json` in any workspace you want. The legacy file `.vscode/restore-terminals.json` is still supported for a few releases but is deprecated. If a config file is present, the extension will try and load settings from it first, then use `settings.json` as a fallback. A sample legacy config file is [here](https://github.com/EthanSK/restore-terminals-vscode/blob/master/sample-test-project/.vscode/restore-terminals.json).
+
+## Migration
+
+- Update settings keys from `restoreTerminals.*` to `turboCharger.*`.
+- If you use a workspace config file, rename `.vscode/restore-terminals.json` to `.vscode/turbo-charger.json`.
+- The legacy `restoreTerminals.*` settings and `.vscode/restore-terminals.json` will be removed after a few releases.
 
 ## Extra info
 

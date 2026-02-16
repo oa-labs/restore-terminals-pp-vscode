@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.17
+- Prefer `turboCharger` settings and `.vscode/turbo-charger.json` with fallback to legacy `restoreTerminals` settings
+- Added deprecation notices for legacy `restoreTerminals` settings
+
 # 1.1.16
 - Removed "folder" configuration option, you can just add it as the first string in the command array.
 

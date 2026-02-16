@@ -2,12 +2,12 @@
   "name": "terminal-turbo-charger",
   "displayName": "Terminal Turbo Charger",
   "description": "Save & restore integrated terminals, with support for editor area terminals, icons, and colors (fork of EthanSK Restore Terminals!)",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "publisher": "OpenArc",
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oa-labs/restore-terminals-pp-vscode"
+    "url": "https://github.com/oa-labs/terminal-turbo-charger"
   },
   "engines": {
     "vscode": "^1.46.0"
@@ -22,23 +22,81 @@
   "contributes": {
     "commands": [
       {
-        "command": "restore-terminals.restoreTerminals",
+        "command": "turbo-charger.restoreTerminals",
         "title": "Restore Terminals"
+      },
+      {
+        "command": "restore-terminals.restoreTerminals",
+        "title": "Restore Terminals (Deprecated)"
       }
     ],
     "configuration": {
-      "title": "Restore Terminals Config",
+      "title": "Terminal Turbo Charger Config",
       "type": "object",
       "properties": {
-        "restoreTerminals.runOnStartup": {
+        "turboCharger.runOnStartup": {
           "type": "boolean",
           "default": true,
           "description": "Whether or not to restore the terminals when VSCode starts up."
         },
-        "restoreTerminals.keepExistingTerminalsOpen": {
+        "turboCharger.keepExistingTerminalsOpen": {
           "type": "boolean",
           "default": false,
           "description": "Whether or not to keep any currently open terminals open when restoring."
+        },
+        "turboCharger.artificialDelayMilliseconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "default": 150,
+          "description": "If you find restore terminals glitching out, or running some commands in the wrong window, you might want to try increasing this number to further delay the processing of actions. If you find it taking too long to open the terminal windows, you can try reducing this number, but be cautious as if it's too fast it will bug out."
+        },
+        "turboCharger.terminals": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "splitTerminals": {
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name to give the terminal window"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "description": "The icon to give the terminal window"
+                    },
+                    "commands": {
+                      "type": "array",
+                      "description": "The shell commands to execute when this terminal opens.",
+                      "items": {
+                        "properties": {
+                          "type": "string",
+                          "description": "A shell command to run."
+                        }
+                      }
+                    },
+                    "shouldRunCommands": {
+                      "type": "boolean",
+                      "description": "Whether to actually run the commands in the terminal, or just paste them there."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "restoreTerminals.runOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Deprecated: use turboCharger.runOnStartup instead. Whether or not to restore the terminals when VSCode starts up."
+        },
+        "restoreTerminals.keepExistingTerminalsOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Deprecated: use turboCharger.keepExistingTerminalsOpen instead. Whether or not to keep any currently open terminals open when restoring."
         },
         "restoreTerminals.artificialDelayMilliseconds": {
           "type": [
@@ -46,7 +104,7 @@
             "null"
           ],
           "default": 150,
-          "description": "If you find restore terminals glitching out, or running some commands in the wrong window, you might want to try increasing this number to further delay the processing of actions. If you find it taking too long to open the terminal windows, you can try reducing this number, but be cautious as if it's too fast it will bug out."
+          "description": "Deprecated: use turboCharger.artificialDelayMilliseconds instead. If you find restore terminals glitching out, or running some commands in the wrong window, you might want to try increasing this number to further delay the processing of actions. If you find it taking too long to open the terminal windows, you can try reducing this number, but be cautious as if it's too fast it will bug out."
         },
         "restoreTerminals.terminals": {
           "type": "array",

@@ -17,10 +17,17 @@ export async function activate(context: vscode.ExtensionContext) {
     "restore-terminals.restoreTerminals",
     async () => {
       restoreTerminals(await getConfiguration()); //get fresh config here
-    }
+    },
   );
 
-  context.subscriptions.push(disposable);
+  let turboDisposable = vscode.commands.registerCommand(
+    "turbo-charger.restoreTerminals",
+    async () => {
+      restoreTerminals(await getConfiguration()); //get fresh config here
+    },
+  );
+
+  context.subscriptions.push(disposable, turboDisposable);
 
   if (config.runOnStartup) {
     restoreTerminals(config); //run on startup
